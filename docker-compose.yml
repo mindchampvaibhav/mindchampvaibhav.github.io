@@ -1,0 +1,12 @@
+# Runs everything locally with one command:  docker compose up --build
+#   Portfolio website  -> http://localhost:8080
+#   Smart GK Quiz app  -> http://localhost:8501  (real Python + Streamlit server in its own container)
+services:
+  portfolio:
+    build: .
+    ports:
+      - "8080:80"
+  smart-gk-quiz:
+    build: ./projects/smart-gk-quiz
+    ports:
+      - "8501:8501"

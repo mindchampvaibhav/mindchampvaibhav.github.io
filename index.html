@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Vaibhav Kumar Gupta</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Portfolio of Vaibhav Kumar Gupta, Grade 12 computer science applicant from New Delhi, with live project demos.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="topbar">
+  <div class="wrap topbar-in">
+    <a class="brand" href="#top" data-home>VKG</a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#projects" data-home>Projects</a>
+      <a href="#about" data-home>About</a>
+      <a href="#activities" data-home>Activities</a>
+      <a href="#contact" data-home>Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <!-- HOME VIEW -->
+  <div id="view-home">
+    <section class="hero wrap" id="top">
+      <div class="hero-text">
+        <p class="eyebrow" id="hero-eyebrow"></p>
+        <h1 class="hero-name" id="hero-name"></h1>
+        <p class="hero-headline" id="hero-headline"></p>
+        <p class="hero-intro" id="hero-intro"></p>
+        <div class="hero-actions">
+          <a class="btn btn-solid" href="#projects" data-home>See my projects</a>
+          <a class="btn" id="hero-github" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn" id="hero-cv" target="_blank" rel="noopener" hidden>CV</a>
+        </div>
+      </div>
+
+      <figure class="trace" aria-labelledby="trace-cap">
+        <div class="trace-head">
+          <span class="mono">smart_gk_quiz · sample run</span>
+          <span class="mono trace-score">8 / 10</span>
+        </div>
+        <svg class="trace-svg" viewBox="0 0 340 200" role="img" aria-label="Step chart of question difficulty over ten questions, rising from level 1 to level 5 with two drops after wrong answers">
+          <g class="trace-grid"></g>
+          <path class="trace-line" d=""></path>
+          <g class="trace-dots"></g>
+        </svg>
+        <figcaption id="trace-cap">Difficulty of each question in one real session of my capstone. A correct answer (dot) raises the next level, a miss (ring) lowers it.</figcaption>
+      </figure>
+    </section>
+
+    <section class="section wrap" id="projects">
+      <div class="section-head">
+        <h2>Projects</h2>
+        <p class="section-note">Open a project to run it here in the browser and read the code.</p>
+      </div>
+      <div class="cards" id="project-cards"></div>
+    </section>
+
+    <section class="section wrap split" id="about">
+      <div class="section-head">
+        <h2>About</h2>
+      </div>
+      <div class="about-body">
+        <div class="prose" id="about-text"></div>
+        <aside class="edu" aria-label="Education">
+          <p class="label">Education</p>
+          <h3 id="edu-school"></h3>
+          <p class="edu-place" id="edu-place"></p>
+          <p id="edu-programme"></p>
+          <p class="mono edu-grad" id="edu-grad"></p>
+          <p class="edu-standing" id="edu-standing"></p>
+          <p class="label">Relevant coursework</p>
+          <ul class="chips" id="edu-coursework"></ul>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section wrap" id="activities">
+      <div class="section-head">
+        <h2>Activities</h2>
+        <p class="section-note">Leadership, service, music and sport.</p>
+      </div>
+      <div class="acts" id="activity-list"></div>
+    </section>
+
+    <section class="section wrap" id="skills">
+      <div class="section-head">
+        <h2>Skills</h2>
+      </div>
+      <div class="skills" id="skill-list"></div>
+    </section>
+
+    <section class="section wrap contact" id="contact">
+      <div class="section-head">
+        <h2>Contact</h2>
+      </div>
+      <div class="contact-body">
+        <p class="contact-lead">The quickest way to reach me is email.</p>
+        <div class="email-row">
+          <span class="email mono" id="contact-email"></span>
+          <button class="btn btn-small" type="button" id="copy-email">Copy</button>
+          <span class="copy-status" id="copy-status" aria-live="polite"></span>
+        </div>
+        <ul class="contact-links" id="contact-links"></ul>
+        <p class="contact-place" id="contact-place"></p>
+      </div>
+    </section>
+  </div>
+
+  <!-- PROJECT VIEW (filled from data/projects.js) -->
+  <article id="view-project" class="wrap project" hidden>
+    <a class="back" href="#projects" data-home>&larr; All projects</a>
+    <header class="project-head">
+      <p class="eyebrow" id="p-context"></p>
+      <h1 id="p-title"></h1>
+      <p class="project-summary" id="p-summary"></p>
+      <ul class="chips" id="p-tech"></ul>
+      <div class="hero-actions" id="p-actions"></div>
+    </header>
+
+    <section class="demo" id="p-demo" hidden>
+      <div class="demo-bar">
+        <span class="demo-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="mono demo-label" id="p-demo-label">Live demo</span>
+        <a class="mono demo-pop" id="p-demo-pop" target="_blank" rel="noopener">Open in new tab &nearr;</a>
+      </div>
+      <div class="demo-stage" id="p-demo-stage">
+        <div class="demo-idle" id="p-demo-idle">
+          <p class="demo-idle-title">Run the real app, right here.</p>
+          <p class="demo-idle-text" id="p-demo-note"></p>
+          <button class="btn btn-solid" type="button" id="p-demo-start">Start demo</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="project-body">
+      <section class="prose" id="p-description" aria-label="About this project"></section>
+      <aside class="built" aria-labelledby="built-h">
+        <p class="label" id="built-h">What I built</p>
+        <ul id="p-highlights"></ul>
+      </aside>
+    </div>
+
+    <section class="code" id="p-code" hidden>
+      <div class="section-head">
+        <h2>Source code</h2>
+        <p class="section-note" id="p-code-note"></p>
+      </div>
+      <div class="code-tabs" role="tablist" id="p-code-tabs"></div>
+      <div class="code-box"><pre><code id="p-code-view"></code></pre></div>
+    </section>
+
+    <section class="run" id="p-run" hidden>
+      <div class="section-head">
+        <h2>Run it on your machine</h2>
+        <p class="section-note">Needs Docker installed.</p>
+      </div>
+      <div class="code-box"><pre><code class="shell" id="p-run-cmds"></code></pre></div>
+    </section>
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-in">
+    <span id="footer-name"></span>
+    <span class="mono" id="footer-year"></span>
+  </div>
+</footer>
+
+<script src="data/site.js"></script>
+<script src="data/projects.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

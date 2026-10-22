@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Live demo</title>
+<!-- Streamlit-in-the-browser runtime (stlite). Pinned version; update both URLs together. -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@stlite/browser@1.9.2/build/stlite.css">
+<style>
+  html, body { height: 100%; margin: 0; background: #ffffff; color: #131a2a; font-family: system-ui, sans-serif; }
+  #root { min-height: 100%; }
+  .msg { max-width: 520px; margin: 15vh auto 0; padding: 0 20px; line-height: 1.5; }
+  .msg h1 { font-size: 1.3rem; margin: 0 0 8px; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="data/projects.js"></script>
+<script type="module">
+  const id = decodeURIComponent(location.hash.slice(1));
+  const project = (window.PROJECTS || []).find((p) => p.id === id);
+  const root = document.getElementById("root");
+
+  function fail(title, text) {
+    root.innerHTML = '<div class="msg"><h1></h1><p></p></div>';
+    root.querySelector("h1").textContent = title;
+    root.querySelector("p").textContent = text;
+  }
+
+  if (!project || !project.demo || project.demo.type !== "streamlit-browser") {
+    fail("Demo not found", "No in-browser demo is set up for “" + id + "”. Check the id and demo settings in data/projects.js.");
+  } else {
+    document.title = project.title + " · live demo";
+    try {
+      const { mount } = await import("https://cdn.jsdelivr.net/npm/@stlite/browser@1.9.2/build/stlite.js");
+      const files = {};
+      for (const [name, path] of Object.entries(project.demo.files)) {
+        files[name] = { url: new URL(encodeURI(path), location.href).href };
+      }
+      mount(
+        {
+          entrypoint: project.demo.entrypoint || "app.py",
+          requirements: project.demo.requirements || [],
+          files,
+        },
+        root
+      );
+    } catch (err) {
+      fail("The demo could not start", "Your browser could not load the Python runtime (" + err.message + "). Try a recent Chrome, Edge, Firefox or Safari, or run the project from its GitHub repository.");
+    }
+  }
+</script>
+</body>
+</html>
